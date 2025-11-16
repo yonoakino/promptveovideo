@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veo Prompt Generator</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and basic setup */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+        .section-header {
+            border-left: 4px solid #3b82f6; /* Blue border for emphasis */
+        }
+        .input-group label {
+            font-weight: 600;
+            color: #374151;
+        }
+        /* Custom scrollbar for better aesthetics */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: #f1f5f9;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#3b82f6',
+                        'secondary': '#10b981',
+                        'background': '#f7f9fc',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-2xl custom-scrollbar overflow-y-auto">
+
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-primary mb-2 text-center">
+            Veo Video Prompt Generator
+        </h1>
+        <p class="text-gray-600 mb-8 text-center">
+            Struktur prompt sinematik untuk hasil video AI terbaik. Isi setiap bagian di bawah ini.
+        </p>
+
+        <!-- Main Form -->
+        <div id="promptForm" class="space-y-8">
+
+            <!-- 1. CINEMATOGRAPHY -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                <h2 class="section-header text-xl font-bold text-gray-800 pl-3 mb-4">1. 🎬 CINEMATOGRAPHY (Sinematografi)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Bidikan/Framing -->
+                    <div class="input-group">
+                        <label for="framing" class="block mb-2 text-sm">Jenis Bidikan/Framing</label>
+                        <select id="framing" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Bidikan --</option>
+                            <option value="Wide shot">Wide shot (Bidikan Lebar)</option>
+                            <option value="Close-up">Close-up (Jarak Dekat)</option>
+                            <option value="Medium shot">Medium shot (Bidikan Sedang)</option>
+                            <option value="Extreme close-up">Extreme close-up (Sangat Dekat)</option>
+                            <option value="Two-shot">Two-shot (Dua Subjek)</option>
+                            <option value="Over-the-shoulder shot">Over-the-shoulder shot (Dari Balik Bahu)</option>
+                        </select>
+                    </div>
+                    <!-- Sudut Kamera -->
+                    <div class="input-group">
+                        <label for="angle" class="block mb-2 text-sm">Sudut Kamera</label>
+                        <select id="angle" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Sudut --</option>
+                            <option value="Low angle">Low angle (Sudut Rendah)</option>
+                            <option value="High angle">High angle (Sudut Tinggi)</option>
+                            <option value="Eye-level">Eye-level (Setinggi Mata)</option>
+                            <option value="POV (Point of View)">POV (Sudut Pandang Subjek)</option>
+                            <option value="Dutch angle (Miring)">Dutch angle (Miring/Tidak Seimbang)</option>
+                        </select>
+                    </div>
+                    <!-- Gerakan Kamera -->
+                    <div class="input-group">
+                        <label for="movement" class="block mb-2 text-sm">Gerakan Kamera</label>
+                        <select id="movement" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Gerakan --</option>
+                            <option value="Static (Kamera diam)">Static (Kamera diam)</option>
+                            <option value="Slow dolly-in">Slow dolly-in (Maju perlahan)</option>
+                            <option value="Tracking shot">Tracking shot (Mengikuti subjek)</option>
+                            <option value="Pan (Geser horizontal)">Pan (Geser horizontal)</option>
+                            <option value="Tilt (Geser vertikal)">Tilt (Geser vertikal)</option>
+                            <option value="Crane shot (Naik/Turun)">Crane shot (Naik/Turun)</option>
+                        </select>
+                    </div>
+                    <!-- Lensa & Fokus -->
+                    <div class="input-group">
+                        <label for="focus" class="block mb-2 text-sm">Lensa & Fokus</label>
+                        <select id="focus" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Fokus --</option>
+                            <option value="Shallow depth of field (Bokeh)">Shallow depth of field (Bokeh/Blur latar)</option>
+                            <option value="Deep focus">Deep focus (Semua fokus)</option>
+                            <option value="Wide-angle lens">Wide-angle lens (Lensa Sudut Lebar)</option>
+                            <option value="Telephoto lens">Telephoto lens (Lensa Jarak Jauh)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. SUBJECT & ACTION -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                <h2 class="section-header text-xl font-bold text-gray-800 pl-3 mb-4">2. 👤 SUBJECT & ACTION (Subjek & Aksi)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Jumlah Subjek -->
+                    <div class="input-group md:col-span-2">
+                        <label for="numSubjects" class="block mb-2 text-sm">Jumlah Subjek (Orang/Karakter)</label>
+                        <select id="numSubjects" onchange="updateSubjectDetails()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="1">1 (Subjek Utama)</option>
+                            <option value="2">2 (Dua Subjek)</option>
+                            <option value="3">3 (Tiga Subjek)</option>
+                            <option value="4">4 (Empat Subjek)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Detail Subjek Dinamis akan dimuat di sini -->
+                    <div id="subjectDetails" class="md:col-span-2 space-y-6 mt-4">
+                        <!-- Default subject 1 form will be generated by JS on load -->
+                    </div>
+
+                    <!-- Aksi -->
+                    <div class="input-group">
+                        <label for="action" class="block mb-2 text-sm">Aksi Subjek (Kata Kerja Kuat)</label>
+                        <input type="text" id="action" placeholder="Cth: menggali dengan hati-hati, berputar perlahan, melaju kencang"
+                               class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
+                    </div>
+                    <!-- Intensitas -->
+                    <div class="input-group">
+                        <label for="intensity" class="block mb-2 text-sm">Intensitas/Gaya Aksi</label>
+                        <select id="intensity" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Intensitas --</option>
+                            <option value="dengan energi tinggi">dengan energi tinggi</option>
+                            <option value="perlahan dan penuh kehati-hatian">perlahan dan penuh kehati-hatian</option>
+                            <option value="ekspresif dan dramatis">ekspresif dan dramatis</option>
+                            <option value="santai dan tenang">santai dan tenang</option>
+                            <option value="panik dan cepat">panik dan cepat</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. CONTEXT -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                <h2 class="section-header text-xl font-bold text-gray-800 pl-3 mb-4">3. 🌍 CONTEXT (Konteks / Latar)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Lokasi -->
+                    <div class="input-group">
+                        <label for="location" class="block mb-2 text-sm">Lokasi Rinci</label>
+                        <input type="text" id="location" placeholder="Cth: di reruntuhan kuil kuno yang tertutup lumut, atau di hutan kota cyberpunk"
+                               class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary" />
+                    </div>
+                    <!-- Waktu Hari/Cuaca -->
+                    <div class="input-group">
+                        <label for="time_weather" class="block mb-2 text-sm">Waktu Hari / Cuaca</label>
+                        <select id="time_weather" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Waktu/Cuaca --</option>
+                            <option value="saat golden hour (matahari terbenam)">saat golden hour (matahari terbenam)</option>
+                            <option value="di pagi hari yang berkabut">di pagi hari yang berkabut</option>
+                            <option value="pada malam hari dengan hujan deras">pada malam hari dengan hujan deras</option>
+                            <option value="saat tengah hari yang terik">saat tengah hari yang terik</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. STYLE & AMBIANCE -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                <h2 class="section-header text-xl font-bold text-gray-800 pl-3 mb-4">4. 🎨 STYLE & AMBIANCE (Gaya & Suasana)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Gaya Visual -->
+                    <div class="input-group">
+                        <label for="style" class="block mb-2 text-sm">Gaya Visual</label>
+                        <select id="style" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Gaya --</option>
+                            <option value="Cinematic">Cinematic (Sinematik)</option>
+                            <option value="Photorealistic">Photorealistic (Fotorealistik)</option>
+                            <option value="Hyper-realistic">Hyper-realistic (Hiper-realistik)</option>
+                            <option value="Anime (Gaya Studio Ghibli)">Anime (Gaya Studio Ghibli)</option>
+                            <option value="Film Noir">Film Noir</option>
+                            <option value="Vintage 8mm film">Vintage 8mm film</option>
+                        </select>
+                    </div>
+                    <!-- Pencahayaan/Warna -->
+                    <div class="input-group">
+                        <label for="ambiance" class="block mb-2 text-sm">Pencahayaan & Mood</label>
+                        <select id="ambiance" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary">
+                            <option value="">-- Pilih Ambiance --</option>
+                            <option value="Dramatic lighting (cahaya gelap/terang)">Dramatic lighting (cahaya gelap/terang)</option>
+                            <option value="Soft light (cahaya lembut) dan Warm tones (nada hangat)">Soft light (cahaya lembut) dan Warm tones (nada hangat)</option>
+                            <option value="Cool tones (nada dingin) dan High contrast">Cool tones (nada dingin) dan High contrast</option>
+                            <option value="Neon lighting (pencahayaan neon) dan Cyberpunk mood">Neon lighting (pencahayaan neon) dan Cyberpunk mood</option>
+                            <option value="Siluet kuat (backlight)">Siluet kuat (backlight)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+             <!-- 5. AUDIO (Opsional) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-inner">
+                <h2 class="section-header text-xl font-bold text-gray-800 pl-3 mb-4">5. 🎧 AUDIO (Opsional)</h2>
+                <div class="input-group">
+                    <label for="audio" class="block mb-2 text-sm">Detail Audio & Dialog (Opsional)</label>
+                    <textarea id="audio" rows="2" placeholder="Cth: Musik latar orkestra epik yang perlahan membesar. Karakter berkata: 'Saya menemukan petunjuknya!'"
+                           class="w-full p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"></textarea>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="text-center">
+                <button onclick="generatePrompt()"
+                        class="px-8 py-3 bg-secondary text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition duration-300 transform hover:scale-105">
+                    GENERATE PROMPT VEO
+                </button>
+            </div>
+        </div>
+
+        <!-- Output Result -->
+        <div id="outputSection" class="mt-10 pt-6 border-t border-gray-200 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Output Prompt Veo Anda:</h2>
+            <div class="relative">
+                <textarea id="outputPrompt" rows="6" readonly
+                          class="w-full p-4 border-2 border-primary bg-blue-50 rounded-lg text-gray-800 text-base custom-scrollbar"></textarea>
+                <button id="copyButton" onclick="copyPrompt()"
+                        class="absolute top-2 right-2 px-3 py-1 bg-primary text-white text-sm rounded-lg hover:bg-blue-600 transition duration-150">
+                    Salin
+                </button>
+            </div>
+            <p id="copyMessage" class="text-sm text-secondary mt-2 hidden">Prompt berhasil disalin!</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSubjectDetails(); // Generate initial subject form on load
+        });
+
+        function generateSubjectForm(index) {
+            const i = index + 1;
+            return `
+                <div class="p-4 border border-gray-300 rounded-lg bg-white shadow-sm" id="subject-form-${i}">
+                    <h3 class="text-lg font-semibold text-primary mb-3">Detail Karakter ${i}</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="input-group">
+                            <label for="gender-${i}" class="block mb-1 text-xs">Jenis Kelamin</label>
+                            <select id="gender-${i}" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                                <option value="pria">Pria</option>
+                                <option value="wanita">Wanita</option>
+                                <option value="non-biner">Non-biner</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="age-${i}" class="block mb-1 text-xs">Umur (Cth: 30 tahun)</label>
+                            <input type="text" id="age-${i}" placeholder="25 tahun" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                        </div>
+                        <div class="input-group">
+                            <label for="body-${i}" class="block mb-1 text-xs">Tipe Tubuh</label>
+                            <select id="body-${i}" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                                <option value="atletis dan ramping">Atletis dan Ramping</option>
+                                <option value="bertubuh besar dan kuat">Bertubuh besar dan kuat</option>
+                                <option value="berpostur rata-rata">Berpostur rata-rata</option>
+                                <option value="kurus dan tinggi">Kurus dan Tinggi</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="height-${i}" class="block mb-1 text-xs">Tinggi Badan</label>
+                            <input type="text" id="height-${i}" placeholder="175cm" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                        </div>
+                        <div class="input-group">
+                            <label for="skin-${i}" class="block mb-1 text-xs">Warna Kulit/Ras</label>
+                            <input type="text" id="skin-${i}" placeholder="Warna kulit cokelat, ras Asia" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                        </div>
+                        <div class="input-group">
+                            <label for="hair-${i}" class="block mb-1 text-xs">Gaya Rambut</label>
+                            <input type="text" id="hair-${i}" placeholder="Rambut panjang ikal berwarna hitam" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                        </div>
+                        <div class="input-group sm:col-span-3">
+                            <label for="clothing-${i}" class="block mb-1 text-xs">Pakaian</label>
+                            <input type="text" id="clothing-${i}" placeholder="Mengenakan jaket kulit vintage dan celana jeans robek" class="w-full p-2 border border-gray-300 rounded-lg text-sm">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateSubjectDetails() {
+            const numSubjects = parseInt(document.getElementById('numSubjects').value);
+            const container = document.getElementById('subjectDetails');
+            container.innerHTML = ''; // Clear previous forms
+
+            for (let i = 0; i < numSubjects; i++) {
+                container.innerHTML += generateSubjectForm(i);
+            }
+        }
+
+        // Fungsi untuk mengumpulkan input dan menghasilkan prompt
+        function generatePrompt() {
+            const framing = document.getElementById('framing').value;
+            const angle = document.getElementById('angle').value;
+            const movement = document.getElementById('movement').value;
+            const focus = document.getElementById('focus').value;
+
+            const numSubjects = parseInt(document.getElementById('numSubjects').value);
+            const action = document.getElementById('action').value.trim();
+            const intensity = document.getElementById('intensity').value;
+
+            const location = document.getElementById('location').value.trim();
+            const timeWeather = document.getElementById('time_weather').value;
+
+            const style = document.getElementById('style').value;
+            const ambiance = document.getElementById('ambiance').value;
+
+            const audio = document.getElementById('audio').value.trim();
+
+            // Guard clause untuk elemen wajib
+            if (!action || !location) {
+                alert("Harap isi bagian Aksi Subjek dan Lokasi Rinci.");
+                return;
+            }
+
+            // 1. Kumpulkan Detail Subjek
+            let subjectDescriptions = [];
+            for (let i = 1; i <= numSubjects; i++) {
+                const gender = document.getElementById(`gender-${i}`).value;
+                const age = document.getElementById(`age-${i}`).value.trim();
+                const body = document.getElementById(`body-${i}`).value;
+                const height = document.getElementById(`height-${i}`).value.trim();
+                const skin = document.getElementById(`skin-${i}`).value.trim();
+                const hair = document.getElementById(`hair-${i}`).value.trim();
+                const clothing = document.getElementById(`clothing-${i}`).value.trim();
+
+                let desc = `Karakter ${i}: ${gender}`;
+
+                if (age) desc += `, ${age}`;
+                if (body) desc += `, ${body}`;
+                if (height) desc += `, ${height}`;
+                if (skin) desc += `, ${skin}`;
+                if (hair) desc += `, ${hair}`;
+                if (clothing) desc += `. Pakaian: ${clothing}`;
+
+                subjectDescriptions.push(desc);
+            }
+            
+            let finalSubjectText = '';
+            if (subjectDescriptions.length === 1) {
+                finalSubjectText = subjectDescriptions[0];
+            } else if (subjectDescriptions.length > 1) {
+                // Contoh: Karakter 1 [desc], Karakter 2 [desc], dan Karakter 3 [desc]
+                const lastSubject = subjectDescriptions.pop();
+                finalSubjectText = subjectDescriptions.join(', ') + `, dan ${lastSubject}`;
+            }
+
+            // 2. Bagian Cinematography
+            let cinematicPart = [framing, angle, movement, focus].filter(v => v).join(', ');
+            if (cinematicPart) cinematicPart += ', ';
+
+            // 3. Bagian Context
+            let contextPart = location;
+            if (timeWeather) contextPart += ` ${timeWeather}`;
+
+            // 4. Bagian Style & Ambiance
+            let styleAmbiancePart = [style, ambiance].filter(v => v).join(' dan ');
+            if (styleAmbiancePart) styleAmbiancePart = `dengan gaya ${styleAmbiancePart}`;
+
+            // 5. Bagian Action
+            let actionPart = action;
+            if (intensity) actionPart += ` ${intensity}`;
+
+            // 6. Bagian Audio
+            let audioPart = '';
+            if (audio) audioPart = ` (Audio: ${audio})`;
+
+            // Menggabungkan semua bagian dalam struktur yang mengalir
+            const prompt =
+                `${cinematicPart} menampilkan ${finalSubjectText} yang sedang ${actionPart} di ${contextPart} ${styleAmbiancePart}.${audioPart}`;
+
+            document.getElementById('outputPrompt').value = prompt;
+            document.getElementById('outputSection').classList.remove('hidden');
+
+            // Reset pesan salin
+            document.getElementById('copyMessage').classList.add('hidden');
+        }
+
+        // Fungsi untuk menyalin prompt ke clipboard
+        function copyPrompt() {
+            const textarea = document.getElementById('outputPrompt');
+            textarea.select();
+            document.execCommand('copy');
+
+            const message = document.getElementById('copyMessage');
+            message.classList.remove('hidden');
+
+            // Hilangkan pesan setelah 3 detik
+            setTimeout(() => {
+                message.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Fungsi untuk menampilkan pesan peringatan kustom sebagai ganti alert()
+        function alert(message) {
+            // Ini adalah implementasi pesan kustom yang tidak memblokir
+            console.error("ALERT:", message);
+            
+            const outputSection = document.getElementById('outputSection');
+            const outputPrompt = document.getElementById('outputPrompt');
+            
+            outputPrompt.value = `[PERINGATAN]: ${message}`;
+            outputSection.classList.remove('hidden');
+
+        }
+    </script>
+</body>
+</html>
